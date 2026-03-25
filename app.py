@@ -4,7 +4,6 @@ import time
 st.set_page_config(page_title="Prevención de Acoso - Policía Nacional", page_icon="🧠", layout="centered")
 
 # --- 🧠 SÍMBOLO DE PSICOLOGÍA ---
-# Usamos un enlace estable del símbolo Ψ para el logo profesional.
 st.image("https://p1.hiclipart.com/preview/845/460/60/simbolo-da-psicologia-psychology-symbol-black-text-png-clipart.jpg", width=120)
 
 st.title("🚨 Test de Prevención de Acoso Sexual y Límites Profesionales")
@@ -22,9 +21,7 @@ with st.sidebar:
     st.error("Recuerda: El acoso sexual y laboral son faltas disciplinarias graves y delitos penales.")
 
 # --- 📝 DICCIONARIO DE PREGUNTAS (12) ---
-# Opciones y el índice de la respuesta correcta (0=A, 1=B, 2=C)
 preguntas = [
-    # ÁREA 1
     {
         "area": "🛡️ ÁREA 1: Límites Físicos y Ciberacoso",
         "p": "Es costumbre en tu unidad saludar con beso en la mejilla, pero notas que una agente de nuevo ingreso se incomoda y retrocede.", 
@@ -49,13 +46,12 @@ preguntas = [
         "area": None,
         "p": "Consigues el número de una agente que te gusta en el grupo oficial de WhatsApp del batallón.", 
         "opts": [
-            "Le escribo en su día libre ('franco') para invitarla a salir de forma insistentemen.", 
+            "Le escribo en su día libre ('franco') para invitarla a salir de forma insistente.", 
             "Le mando fotos mías sin camisa para ver 'si hay química'.", 
             "Respeto que es un grupo de trabajo y uso su número estrictamente para temas operativos."
         ],
         "correcta": 2
     },
-    # ÁREA 2
     {
         "area": "⚖️ ÁREA 2: Abuso de Poder (Hostigamiento Quid Pro Quo)",
         "p": "Eres jefe de turno (o superior) y te atrae mucho un/a subalterna/o que está bajo tu mando directo.", 
@@ -86,7 +82,6 @@ preguntas = [
         ],
         "correcta": 2
     },
-    # ÁREA 3
     {
         "area": "🗣️ ÁREA 3: Ambiente Laboral Hostil y Complicidad",
         "p": "Durante el rancho (comida), haces un comentario sexual o en doble sentido y una compañera te dice que la incomodaste.", 
@@ -117,7 +112,6 @@ preguntas = [
         ],
         "correcta": 0
     },
-    # ÁREA 4
     {
         "area": "🛑 ÁREA 4: Cultura del Consentimiento y el Rechazo",
         "p": "Invitas a salir a un colega de tu misma promoción y te dice clara y directamente: 'No me interesa'.", 
@@ -158,94 +152,45 @@ for i, item in enumerate(preguntas):
         st.write("---")
         st.subheader(item["area"])
     
-    # Renderizar la pregunta
-    res = st.radio(f"**{i+1}. {item['p']}**", item['opts'], key=f"pregunta_{i}", index=None)
+    res = st.radio(f"**{i+1}. {item['p']}**", item['opts'], key=f"pregunta_{i}")
     respuestas.append(res)
 
 st.write("---")
 
-# --- 📊 EVALUACIÓN Y NUEVAS ANIMACIONES VISUALES ---
+# --- 📊 EVALUACIÓN ---
 if st.button("Evaluar mis respuestas", type="primary"):
-    if None in respuestas:
-        st.warning("⚠️ Por favor, responde las 12 preguntas para poder generar tu evaluación.")
+    puntos = 0
+    for i, res in enumerate(respuestas):
+        if res == preguntas[i]['opts'][preguntas[i]['correcta']]:
+            puntos += 1
+            
+    st.divider()
+    
+    # Animación de carga
+    porcentaje = int((puntos / 12) * 100)
+    texto_carga = "Analizando tu perfil ético e institucional..."
+    barra_progreso = st.progress(0, text=texto_carga)
+    
+    if porcentaje > 0:
+        for i in range(porcentaje):
+            time.sleep(0.01)
+            barra_progreso.progress(i + 1, text=f"{texto_carga} {i+1}%")
     else:
-        # 1. Calcular puntos
-        puntos = 0
-        for i, res in enumerate(respuestas):
-            indice_elegido = preguntas[i]['opts'].index(res)
-            if indice_elegido == preguntas[i]['correcta']:
-                puntos += 1
+        time.sleep(1)
         
-        st.divider()
-        
-        # 2. EFECTO DE BARRA DE PROGRESO LLENÁNDOSE
-        porcentaje = int((puntos / 12) * 100)
-        texto_carga = "Analizando tu perfil ético e institucional..."
-        barra_progreso = st.progress(0, text=texto_carga)
-        
-        if porcentaje > 0:
-            for i in range(porcentaje):
-                time.sleep(0.02) # Velocidad de la animación
-                barra_progreso.progress(i + 1, text=f"{texto_carga} {i+1}%")
-        else:
-            time.sleep(1)
-            
-        barra_progreso.empty() # Quitamos la barra para mostrar el resultado final
-        
-        # 3. MARCADOR GIGANTE DE PUNTOS
-        col1, col2, col3 = st.columns([1, 2, 1])
-        with col2:
-            st.metric(label="Tu Puntuación Obtenida", value=f"{puntos} / 12", delta=f"{porcentaje}% de compatibilidad ética")
-        
-        # --- 📈 NUEVA REPRESENTACIÓN GRÁFICA ESCALAR ---
-        # Definimos las posiciones de los marcadores en porcentaje (0-100)
-        posicion_marcador = (puntos / 12) * 100
-        
-        st.markdown("### 📊 Ubicación en la Escala Ética")
-        
-        # Creamos la barra gráfica usando HTML y CSS personalizado
-        barra_html = f"""
-        <div style="width: 100%; background-color: #ddd; border-radius: 5px; position: relative; height: 35px; margin-top: 10px;">
-            <div style="width: 66.6%; background-color: #ff4b4b; height: 100%; border-radius: 5px 0 0 5px; position: absolute; left: 0; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">RIESGO</div>
-            <div style="width: 25%; background-color: #ffaa00; height: 100%; position: absolute; left: 66.6%; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">ADVERTENCIA</div>
-            <div style="width: 8.4%; background-color: #28a745; height: 100%; border-radius: 0 5px 5px 0; position: absolute; left: 91.6%; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">PUNTO ÓPTIMO</div>
-            
-            <div style="position: absolute; left: calc({posicion_marcador}% - 10px); top: -20px; font-size: 20px;">⬇️</div>
-        </div>
-        <div style="display: flex; justify-content: space-between; font-size: 12px; color: #555; padding-top: 2px;">
-            <span>0 pts</span>
-            <span>8 pts</span>
-            <span>11 pts</span>
-            <span>12 pts</span>
-        </div>
-        """
-        
-        # Renderizamos la barra HTML dinámica
-        st.markdown(barra_html, unsafe_allow_html=True)
-        st.write("---")
-        
-        st.markdown("### 📊 Tu Ubicación en la Escala de Tolerancia Cero")
-        
-        # Textos fijos
-        texto_alto = "🌟 **12 puntos: PROFESIONALISMO Y ÉTICA INTACHABLE** \n\nEntiendes perfectamente qué es el acoso sexual, respetas el consentimiento y promueves un ambiente de trabajo seguro. Eres un policía íntegro y un ejemplo para la institución."
-        texto_medio = "⚠️ **9 a 11 puntos: ALERTA DE COMPORTAMIENTOS NORMALIZADOS** \n\nCuidado. Estás justificando o normalizando acciones que constituyen acoso laboral o sexual (como los chistes, rumores o la insistencia). Necesitas revisar tus límites urgentes antes de cometer una falta disciplinaria grave."
-        texto_bajo = "🚨 **8 puntos o menos: RIESGO ALTO DE COMETER ACOSO / DELITO** \n\n**Atención:** Tus respuestas reflejan comportamientos de hostigamiento, abuso de autoridad y falta de respeto graves. Estas acciones son causales de despido en la institución e incurren en delitos penales. Se recomienda buscar reeducación inmediata y cambiar estas actitudes."
-
-        # 4. RESALTADO VISUAL FUERTE DE RESULTADOS
-        if puntos == 12:
-            st.balloons()
-            st.success(f"🎯 **¡TÚ ESTÁS AQUÍ! ¡EXCELENTE TRABAJO!** 🎯\n\n {texto_alto}")
-            st.write("---")
-            st.markdown(f"<div style='opacity: 0.5;'>{texto_medio}</div>", unsafe_allow_html=True)
-            st.markdown(f"<div style='opacity: 0.5;'>{texto_bajo}</div>", unsafe_allow_html=True)
-            
-        elif puntos >= 9:
-            st.snow()
-            st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}</div>", unsafe_allow_html=True)
-            st.write("---")
-            st.warning(f"🎯 **¡TÚ ESTÁS AQUÍ! PRESTA ATENCIÓN** 🎯\n\n {texto_medio}")
-            st.write("---")
-            st.markdown(f"<div style='opacity: 0.5;'>{texto_bajo}</div>", unsafe_allow_html=True)
-            
-        else:
-            st.toast('🚨 ¡
+    barra_progreso.empty()
+    
+    # Marcador
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.metric(label="Tu Puntuación Obtenida", value=f"{puntos} / 12", delta=f"{porcentaje}% de compatibilidad ética")
+    
+    # --- 📈 GRÁFICA CORREGIDA Y SEGURA ---
+    st.markdown("### 📊 Ubicación en la Escala Ética")
+    
+    # Calculamos la posición evitando el uso complejo de f-strings con llaves dobles
+    posicion = (puntos / 12) * 100
+    
+    html_grafica = (
+        '<div style="width: 100%; background-color: #ddd; border-radius: 5px; position: relative; height: 35px; margin-top: 10px;">'
+        '<div style="width: 66.6%; background-color: #
