@@ -1,27 +1,15 @@
 import streamlit as st
 import time
 
-st.set_page_config(
-    page_title="Prevención de Acoso", 
-    page_icon="🧠", 
-    layout="centered"
-)
+st.set_page_config(page_title="Prevención de Acoso", page_icon="🧠", layout="centered")
 
 # --- 🧠 SÍMBOLO DE PSICOLOGÍA ---
-st.image(
-    "https://p1.hiclipart.com/preview/845/460/60/"
-    "simbolo-da-psicologia-psychology-symbol-black-text-png-clipart.jpg", 
-    width=120
-)
+st.image("https://p1.hiclipart.com/preview/845/460/60/simbolo-da-psicologia-psychology-symbol-black-text-png-clipart.jpg", width=120)
 
 st.title("🚨 Test de Prevención de Acoso Sexual")
 st.write("**Policía Nacional de Honduras**")
 st.write("---")
-st.write(
-    "Este cuestionario es una herramienta de autoevaluación anónima "
-    "para identificar conductas de riesgo, promover el respeto al "
-    "consentimiento y garantizar un ambiente laboral seguro."
-)
+st.write("Este cuestionario es una herramienta de autoevaluación anónima para identificar conductas de riesgo, promover el respeto al consentimiento y garantizar un ambiente laboral seguro.")
 
 # --- 📱 BARRA LATERAL (SIDEBAR) ---
 with st.sidebar:
@@ -191,4 +179,62 @@ if st.button("Evaluar mis respuestas", type="primary"):
         
     barra_progreso.empty()
     
-    col1, col2, col3 = st
+    # ¡Esta es la línea que se te había borrado a la mitad!
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col2:
+        st.metric(label="Tu Puntuación Obtenida", value=f"{puntos} / 12", delta=f"{porcentaje}% de compatibilidad")
+    
+    st.markdown("### 📊 Ubicación en la Escala Ética")
+    
+    posicion = (puntos / 12) * 100
+    
+    html_grafica = (
+        "<div style='width:100%; background-color:#ddd; border-radius:5px; position:relative; height:35px; margin-top:10px;'>"
+        "<div style='width:66.6%; background-color:#ff4b4b; height:100%; border-radius:5px 0 0 5px; position:absolute; left:0; top:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:12px;'>RIESGO</div>"
+        "<div style='width:25%; background-color:#ffaa00; height:100%; position:absolute; left:66.6%; top:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:12px;'>ALERTA</div>"
+        "<div style='width:8.4%; background-color:#28a745; height:100%; border-radius:0 5px 5px 0; position:absolute; left:91.6%; top:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:12px;'>ÓPTIMO</div>"
+        f"<div style='position:absolute; left:calc({posicion}% - 10px); top:-20px; font-size:20px;'>⬇️</div>"
+        "</div>"
+        "<div style='display:flex; justify-content:space-between; font-size:12px; color:#555; padding-top:2px;'>"
+        "<span>0 pts</span><span>8 pts</span><span>11 pts</span><span>12 pts</span>"
+        "</div>"
+    )
+    
+    st.markdown(html_grafica, unsafe_allow_html=True)
+    st.write("---")
+    
+    st.markdown("### 📋 Tu Diagnóstico y Consejos")
+
+    texto_alto = "🌟 **12 pts: ÉTICA INTACHABLE** \n\nEntiendes el respeto y promueves un ambiente seguro."
+    consejo_alto = "**💡 Consejo:** ¡Sigue así! Sé un agente de cambio y corrige a tus compañeros si ves acoso."
+
+    texto_medio = "⚠️ **9 a 11 pts: ALERTA DE RIESGO** \n\nEstás normalizando acciones que constituyen acoso."
+    consejo_medio = "**💡 Consejo:** Reflexiona sobre las 'bromas'. Mantén una postura profesional siempre."
+
+    texto_bajo = "🚨 **8 pts o menos: RIESGO ALTO** \n\nTus respuestas reflejan hostigamiento y abuso graves."
+    consejo_bajo = "**💡 URGENTE:** Detén cualquier insinuación. El rango no te da derecho a favores."
+
+    if puntos == 12:
+        st.balloons()
+        col_img, col_txt = st.columns([1, 3])
+        with col_img:
+            st.markdown("<h1 style='text-align:center;font-size:80px;'>👮‍♂️✨</h1>", unsafe_allow_html=True)
+        with col_txt:
+            st.success(f"🎯 **¡TÚ ESTÁS AQUÍ!** \n\n {texto_alto}")
+            st.info(consejo_alto)
+            
+    elif puntos >= 9:
+        st.snow()
+        col_img, col_txt = st.columns([1, 3])
+        with col_img:
+            st.markdown("<h1 style='text-align:center;font-size:80px;'>👮‍♂️🤔</h1>", unsafe_allow_html=True)
+        with col_txt:
+            st.warning(f"🎯 **PRESTA ATENCIÓN** \n\n {texto_medio}")
+            st.warning(consejo_medio)
+            
+    else:
+        st.toast('🚨 ¡ALERTA DE RIESGO!', icon='🚨')
+        col_img, col_txt = st.columns([1, 3])
+        with col_img:
+            st.markdown("<h1 style='text-align:center;font-size:80px;'>👮‍♂️🛑</h1>", unsafe_allow_html=True)
