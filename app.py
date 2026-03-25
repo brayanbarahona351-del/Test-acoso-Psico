@@ -31,7 +31,7 @@ preguntas = [
             "Me ofendo y le digo a los demás compañeros que es una maleducada."
         ],
         "correcta": 1,
-        "consejo": "El contacto físico no solicitado nunca debe ser forzado. El respeto al espacio personal es fundamental en la disciplina policial."
+        "consejo": "El contacto físico no solicitado nunca debe ser forzado. El respeto al espacio personal es fundamental."
     },
     {
         "area": None,
@@ -42,7 +42,7 @@ preguntas = [
             "Mando un sticker o video pornográfico al chat privado de una agente 'solo por bromear'."
         ],
         "correcta": 0,
-        "consejo": "Evita cualquier comentario o contenido de índole sexual en el entorno laboral o con colegas. Esto constituye ciberacoso y hostigamiento."
+        "consejo": "Evita cualquier comentario o contenido sexual en el entorno laboral. Esto constituye ciberacoso y hostigamiento."
     },
     {
         "area": None,
@@ -53,7 +53,7 @@ preguntas = [
             "Respeto que es un grupo de trabajo y uso su número estrictamente para temas operativos."
         ],
         "correcta": 2,
-        "consejo": "Usar información obtenida en el trabajo (como un número de teléfono en un grupo oficial) para fines personales o de coqueteo es un abuso de confianza."
+        "consejo": "Usar información del trabajo (como un número en un grupo oficial) para coqueteo es un abuso de confianza."
     },
     {
         "area": "⚖️ ÁREA 2: Abuso de Poder (Hostigamiento Quid Pro Quo)",
@@ -64,7 +64,7 @@ preguntas = [
             "Le pongo los turnos más pesados o le llamo la atención sin razón hasta que me haga caso."
         ],
         "correcta": 1,
-        "consejo": "Usar tu rango para obtener favores o castigar por rechazos es una falta grave, abuso de autoridad y acoso directo."
+        "consejo": "Usar tu rango para obtener favores o castigar por rechazos es una falta grave y abuso de autoridad."
     },
     {
         "area": None,
@@ -75,7 +75,7 @@ preguntas = [
             "Le digo que no se preocupe, el apoyo entre compañeros es fundamental y no pido nada a cambio."
         ],
         "correcta": 2,
-        "consejo": "La solidaridad entre compañeros es un deber institucional, no una moneda de cambio para cobrar favores de índole sexual."
+        "consejo": "La solidaridad entre compañeros es un deber institucional, no una moneda de cambio sexual."
     },
     {
         "area": None,
@@ -86,7 +86,7 @@ preguntas = [
             "Realizo el procedimiento policial con total respeto y protejo la privacidad de sus datos."
         ],
         "correcta": 2,
-        "consejo": "Aprovecharse de la vulnerabilidad de una ciudadana y usar sus datos privados para coquetear destruye la confianza pública y es penado por la ley."
+        "consejo": "Usar datos privados de una ciudadana vulnerable para coquetear destruye la confianza pública y es penado por la ley."
     },
     {
         "area": "🗣️ ÁREA 3: Ambiente Laboral Hostil y Complicidad",
@@ -97,7 +97,7 @@ preguntas = [
             "Le digo que si está en la Policía tiene que aprender a aguantar el ambiente pesado."
         ],
         "correcta": 0,
-        "consejo": "Si alguien te indica que tu comentario la incomodó, asume la responsabilidad y cambia la actitud. No minimices su sentir ni justifiques la falta de respeto."
+        "consejo": "Si alguien te indica que tu comentario la incomodó, asume el error. No minimices su sentir ni justifiques la falta de respeto."
     },
     {
         "area": None,
@@ -108,7 +108,7 @@ preguntas = [
             "Las veo un rato, pero me quedo callado para no tener problemas con el grupo."
         ],
         "correcta": 1,
-        "consejo": "Consumir, guardar o compartir imágenes íntimas sin el consentimiento de la persona te hace cómplice de un delito de cibercrimen."
+        "consejo": "Consumir, guardar o compartir imágenes íntimas sin consentimiento te hace cómplice de un cibercrimen."
     },
     {
         "area": None,
@@ -119,7 +119,7 @@ preguntas = [
             "Se lo voy a contar de inmediato a mi compañero de patrulla para que también sepa."
         ],
         "correcta": 0,
-        "consejo": "La difamación sexualizada crea un ambiente laboral tóxico. Frenar los rumores y respetar los méritos de tus colegas es parte de tu integridad."
+        "consejo": "La difamación sexualizada crea un ambiente tóxico. Frenar los rumores es parte de tu integridad."
     },
     {
         "area": "🛑 ÁREA 4: Cultura del Consentimiento y el Rechazo",
@@ -130,7 +130,7 @@ preguntas = [
             "Me enojo, dejo de hablarle y le aplico la 'ley del hielo' durante los turnos."
         ],
         "correcta": 1,
-        "consejo": "Un 'No' significa no. La insistencia reiterada o las represalias emocionales tras un rechazo son actos claros de hostigamiento."
+        "consejo": "Un 'No' significa no. La insistencia reiterada o las represalias emocionales son actos de hostigamiento."
     },
     {
         "area": None,
@@ -141,7 +141,7 @@ preguntas = [
             "Aprovecho el estrés del operativo para tirarle indirectas o burlarme de su rechazo."
         ],
         "correcta": 0,
-        "consejo": "Poner en riesgo la seguridad de un compañero por un rechazo personal es una negligencia gravísima y una falta total a la lealtad policial."
+        "consejo": "Poner en riesgo la seguridad de un compañero por un rechazo personal es una negligencia gravísima."
     },
     {
         "area": None,
@@ -152,9 +152,14 @@ preguntas = [
             "Animo a la compañera a denunciar la situación y me ofrezco como testigo del hostigamiento."
         ],
         "correcta": 2,
-        "consejo": "El silencio perpetúa el acoso. Apoyar a la víctima y estar dispuesto a testificar es tu deber ético, sin importar el rango del agresor."
+        "consejo": "El silencio perpetúa el acoso. Apoyar a la víctima y testificar es tu deber ético, sin importar el rango del agresor."
     }
 ]
+
+# --- FUNCIÓN PARA REINICIAR LA MEMORIA (LIMPIAR RESPUESTAS) ---
+def limpiar_cuestionario():
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
 
 respuestas = []
 
@@ -164,121 +169,127 @@ for i, item in enumerate(preguntas):
         st.write("---")
         st.subheader(item["area"])
     
-    res = st.radio(f"**{i+1}. {item['p']}**", item['opts'], key=f"pregunta_{i}")
+    # index=None asegura que todas las opciones inicien en blanco
+    res = st.radio(f"**{i+1}. {item['p']}**", item['opts'], key=f"pregunta_{i}", index=None)
     respuestas.append(res)
 
 st.write("---")
 
 # --- 📊 EVALUACIÓN ---
 if st.button("Evaluar mis respuestas", type="primary"):
-    puntos = 0
-    errores = [] # Lista para guardar las preguntas en las que falló el usuario
     
-    for i, res in enumerate(respuestas):
-        idx_correcta = preguntas[i]['correcta']
-        if res == preguntas[i]['opts'][idx_correcta]:
-            puntos += 1
+    # VALIDACIÓN: SI HAY ALGUNA PREGUNTA SIN RESPONDER (EN BLANCO)
+    if None in respuestas:
+        st.warning("⚠️ ¡Alto! Aún tienes preguntas en blanco. Por favor, responde las 12 preguntas para poder generar tu evaluación.")
+    else:
+        puntos = 0
+        errores = [] 
+        
+        for i, res in enumerate(respuestas):
+            idx_correcta = preguntas[i]['correcta']
+            if res == preguntas[i]['opts'][idx_correcta]:
+                puntos += 1
+            else:
+                errores.append({
+                    "pregunta": preguntas[i]['p'],
+                    "tu_respuesta": res,
+                    "correcta": preguntas[i]['opts'][idx_correcta],
+                    "consejo": preguntas[i]['consejo']
+                })
+                
+        st.divider()
+        
+        # Animación de carga
+        porcentaje = int((puntos / 12) * 100)
+        texto_carga = "Analizando tu perfil ético e institucional..."
+        barra_progreso = st.progress(0, text=texto_carga)
+        
+        if porcentaje > 0:
+            for i in range(porcentaje):
+                time.sleep(0.01)
+                barra_progreso.progress(i + 1, text=f"{texto_carga} {i+1}%")
         else:
-            errores.append({
-                "pregunta": preguntas[i]['p'],
-                "tu_respuesta": res,
-                "correcta": preguntas[i]['opts'][idx_correcta],
-                "consejo": preguntas[i]['consejo']
-            })
+            time.sleep(1)
             
-    st.divider()
-    
-    # Animación de carga
-    porcentaje = int((puntos / 12) * 100)
-    texto_carga = "Analizando tu perfil ético e institucional..."
-    barra_progreso = st.progress(0, text=texto_carga)
-    
-    if porcentaje > 0:
-        for i in range(porcentaje):
-            time.sleep(0.01)
-            barra_progreso.progress(i + 1, text=f"{texto_carga} {i+1}%")
-    else:
-        time.sleep(1)
+        barra_progreso.empty()
         
-    barra_progreso.empty()
-    
-    # Marcador
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.metric(label="Tu Puntuación Obtenida", value=f"{puntos} / 12", delta=f"{porcentaje}% de compatibilidad ética")
-    
-    # --- 📈 GRÁFICA ---
-    st.markdown("### 📊 Ubicación en la Escala Ética")
-    posicion = (puntos / 12) * 100
-    
-    html_grafica = f"""
-    <div style="width: 100%; background-color: #ddd; border-radius: 5px; position: relative; height: 35px; margin-top: 10px;">
-        <div style="width: 66.6%; background-color: #ff4b4b; height: 100%; border-radius: 5px 0 0 5px; position: absolute; left: 0; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">RIESGO</div>
-        <div style="width: 25%; background-color: #ffaa00; height: 100%; position: absolute; left: 66.6%; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">ADVERTENCIA</div>
-        <div style="width: 8.4%; background-color: #28a745; height: 100%; border-radius: 0 5px 5px 0; position: absolute; left: 91.6%; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">ÓPTIMO</div>
-        <div style="position: absolute; left: calc({posicion}% - 10px); top: -20px; font-size: 20px;">⬇️</div>
-    </div>
-    <div style="display: flex; justify-content: space-between; font-size: 12px; color: #555; padding-top: 2px;">
-        <span>0 pts</span><span>8 pts</span><span>11 pts</span><span>12 pts</span>
-    </div>
-    """
-    
-    st.markdown(html_grafica, unsafe_allow_html=True)
-    st.write("---")
-    
-    # --- DIAGNÓSTICO GENERAL ---
-    st.markdown("### 📊 Tu Diagnóstico")
-    
-    texto_alto = "🌟 **12 puntos: PROFESIONALISMO Y ÉTICA INTACHABLE** \n\nEntiendes perfectamente qué es el acoso sexual, respetas el consentimiento y promueves un ambiente de trabajo seguro."
-    consejo_alto = "**💡 Consejo Institucional:** ¡Sigue así! Sé un agente de cambio. Si ves a un compañero haciendo un comentario fuera de lugar o acosando a alguien, corrígelo. Tu liderazgo y ejemplo ayudan a crear una Policía Nacional más profesional y segura para todos."
-
-    texto_medio = "⚠️ **9 a 11 puntos: ALERTA DE COMPORTAMIENTOS NORMALIZADOS** \n\nCuidado. Estás justificando acciones que constituyen acoso. Necesitas revisar tus límites."
-    consejo_medio = "**💡 Consejo Institucional:** Reflexiona sobre las 'bromas' o costumbres de tu unidad. Que algo sea considerado 'normal' no significa que sea correcto o legal. Empieza a marcar límites claros entre la camaradería y la falta de respeto."
-
-    texto_bajo = "🚨 **8 puntos o menos: RIESGO ALTO DE COMETER ACOSO / DELITO** \n\nAtención: Tus respuestas reflejan comportamientos de hostigamiento. Se recomienda buscar reeducación inmediata."
-    consejo_bajo = "**💡 CONSEJO URGENTE:** Detén cualquier comportamiento de insinuación, presión o 'bromas' pesadas hacia tus colegas. El uniforme y el rango no te dan derecho a favores personales ni sexuales."
-
-    col_gif1, col_gif2, col_gif3 = st.columns([1, 1, 1])
-    
-    if puntos == 12:
-        st.balloons()
-        with col_gif2:
-            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f3c6/512.gif", width=120)
-        st.success(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_alto}")
-        st.info(consejo_alto)
-        st.markdown(f"<div style='opacity: 0.5;'>{texto_medio}<br><br>{texto_bajo}</div>", unsafe_allow_html=True)
+        # Marcador
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.metric(label="Tu Puntuación Obtenida", value=f"{puntos} / 12", delta=f"{porcentaje}% de compatibilidad ética")
         
-    elif puntos >= 9:
-        st.snow()
-        with col_gif2:
-            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/26a0_fe0f/512.gif", width=120)
-        st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}</div>", unsafe_allow_html=True)
-        st.warning(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_medio}")
-        st.warning(consejo_medio)
-        st.markdown(f"<div style='opacity: 0.5;'>{texto_bajo}</div>", unsafe_allow_html=True)
+        # --- 📈 GRÁFICA ---
+        st.markdown("### 📊 Ubicación en la Escala Ética")
+        posicion = (puntos / 12) * 100
         
-    else:
-        st.toast('🚨 ¡ALERTA DE RIESGO!', icon='🚨')
-        with col_gif2:
-            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f6a8/512.gif", width=120)
-        st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}<br><br>{texto_medio}</div>", unsafe_allow_html=True)
-        st.error(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_bajo}")
-        st.error(consejo_bajo)
-    
-    # --- 🔍 REVISIÓN DE ERRORES (NUEVO) ---
-    if len(errores) > 0:
+        html_grafica = f"""
+        <div style="width: 100%; background-color: #ddd; border-radius: 5px; position: relative; height: 35px; margin-top: 10px;">
+            <div style="width: 66.6%; background-color: #ff4b4b; height: 100%; border-radius: 5px 0 0 5px; position: absolute; left: 0; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">RIESGO</div>
+            <div style="width: 25%; background-color: #ffaa00; height: 100%; position: absolute; left: 66.6%; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">ADVERTENCIA</div>
+            <div style="width: 8.4%; background-color: #28a745; height: 100%; border-radius: 0 5px 5px 0; position: absolute; left: 91.6%; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">ÓPTIMO</div>
+            <div style="position: absolute; left: calc({posicion}% - 10px); top: -20px; font-size: 20px;">⬇️</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: #555; padding-top: 2px;">
+            <span>0 pts</span><span>8 pts</span><span>11 pts</span><span>12 pts</span>
+        </div>
+        """
+        
+        st.markdown(html_grafica, unsafe_allow_html=True)
         st.write("---")
-        st.markdown("### 🔍 Revisión de tus respuestas")
-        st.write("Revisa en qué fallaste y lee los consejos para mejorar:")
         
-        for index, error in enumerate(errores):
-            st.error(f"**Pregunta:** {error['pregunta']}")
-            st.write(f"❌ **Elegiste:** {error['tu_respuesta']}")
-            st.success(f"✅ **Lo correcto era:** {error['correcta']}")
-            st.info(f"💡 **Consejo:** {error['consejo']}")
-            st.write("") # Espacio entre errores
+        # --- DIAGNÓSTICO GENERAL ---
+        st.markdown("### 📊 Tu Diagnóstico")
+        
+        texto_alto = "🌟 **12 puntos: PROFESIONALISMO Y ÉTICA INTACHABLE** \n\nEntiendes perfectamente qué es el acoso sexual, respetas el consentimiento y promueves un ambiente de trabajo seguro."
+        consejo_alto = "**💡 Consejo Institucional:** ¡Sigue así! Sé un agente de cambio. Si ves a un compañero acosando a alguien, corrígelo. Tu liderazgo ayuda a crear una Policía más profesional."
+
+        texto_medio = "⚠️ **9 a 11 puntos: ALERTA DE COMPORTAMIENTOS NORMALIZADOS** \n\nCuidado. Estás justificando acciones que constituyen acoso. Necesitas revisar tus límites."
+        consejo_medio = "**💡 Consejo Institucional:** Reflexiona sobre las 'bromas' de tu unidad. Que algo sea 'normal' no significa que sea correcto. Marca límites claros."
+
+        texto_bajo = "🚨 **8 puntos o menos: RIESGO ALTO DE COMETER ACOSO / DELITO** \n\nAtención: Tus respuestas reflejan comportamientos de hostigamiento. Busca reeducación inmediata."
+        consejo_bajo = "**💡 CONSEJO URGENTE:** Detén cualquier insinuación o presión hacia tus colegas. El uniforme no te da derecho a favores."
+
+        col_gif1, col_gif2, col_gif3 = st.columns([1, 1, 1])
+        
+        if puntos == 12:
+            st.balloons()
+            with col_gif2:
+                st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f3c6/512.gif", width=120)
+            st.success(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_alto}")
+            st.info(consejo_alto)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_medio}<br><br>{texto_bajo}</div>", unsafe_allow_html=True)
             
-    st.write("---")
-    
-    if st.button("🔄 Volver a hacer el test"):
-        st.rerun()
+        elif puntos >= 9:
+            st.snow()
+            with col_gif2:
+                st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/26a0_fe0f/512.gif", width=120)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}</div>", unsafe_allow_html=True)
+            st.warning(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_medio}")
+            st.warning(consejo_medio)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_bajo}</div>", unsafe_allow_html=True)
+            
+        else:
+            st.toast('🚨 ¡ALERTA DE RIESGO!', icon='🚨')
+            with col_gif2:
+                st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f6a8/512.gif", width=120)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}<br><br>{texto_medio}</div>", unsafe_allow_html=True)
+            st.error(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_bajo}")
+            st.error(consejo_bajo)
+        
+        # --- 🔍 REVISIÓN DE ERRORES ---
+        if len(errores) > 0:
+            st.write("---")
+            st.markdown("### 🔍 Revisión de tus respuestas")
+            st.write("Revisa en qué fallaste y lee los consejos para mejorar:")
+            
+            for index, error in enumerate(errores):
+                st.error(f"**Pregunta:** {error['pregunta']}")
+                st.write(f"❌ **Elegiste:** {error['tu_respuesta']}")
+                st.success(f"✅ **Lo correcto era:** {error['correcta']}")
+                st.info(f"💡 **Consejo:** {error['consejo']}")
+                st.write("") 
+                
+        st.write("---")
+        
+        # Botón para reiniciar, vinculado a la función que borra la memoria
+        st.button("🔄 Volver a hacer el test y limpiar respuestas", on_click=limpiar_cuestionario)
