@@ -152,18 +152,17 @@ for i, item in enumerate(preguntas):
         st.write("---")
         st.subheader(item["area"])
     
-    # Asignamos una key dinámica a cada radio button para poder reiniciarlos
     res = st.radio(f"**{i+1}. {item['p']}**", item['opts'], key=f"pregunta_{i}", index=None)
     respuestas.append(res)
 
 st.write("---")
 
-# --- 📊 EVALUACIÓN Y ANIMACIONES ---
+# --- 📊 EVALUACIÓN Y NUEVAS ANIMACIONES VISUALES ---
 if st.button("Evaluar mis respuestas", type="primary"):
     if None in respuestas:
         st.warning("⚠️ Por favor, responde las 12 preguntas para poder generar tu evaluación.")
     else:
-        # Calculamos los puntos
+        # 1. Calcular puntos
         puntos = 0
         for i, res in enumerate(respuestas):
             indice_elegido = preguntas[i]['opts'].index(res)
@@ -172,38 +171,63 @@ if st.button("Evaluar mis respuestas", type="primary"):
         
         st.divider()
         
-        with st.spinner('Analizando tus respuestas...'):
-            time.sleep(1.5)
-            
-        st.subheader(f"Tu puntuación: {puntos} de 12")
-        st.markdown("### 📊 Escala de Calificación de Tolerancia Cero")
+        # 2. ANIMACIÓN DE BARRA DE PROGRESO LLENÁNDOSE
+        porcentaje = int((puntos / 12) * 100)
+        texto_carga = "Analizando tu perfil ético e institucional..."
+        barra_progreso = st.progress(0, text=texto_carga)
         
-        # Textos fijos de los niveles
+        if porcentaje > 0:
+            for i in range(porcentaje):
+                time.sleep(0.02) # Velocidad de la animación
+                barra_progreso.progress(i + 1, text=f"{texto_carga} {i+1}%")
+        else:
+            time.sleep(1)
+            
+        barra_progreso.empty() # Quitamos la barra para mostrar el resultado final
+        
+        # 3. MARCADOR GIGANTE DE PUNTOS
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.metric(label="Tu Puntuación Obtenida", value=f"{puntos} / 12", delta=f"{porcentaje}% de compatibilidad ética")
+        
+        st.markdown("### 📊 Tu Ubicación en la Escala de Tolerancia Cero")
+        
+        # Textos fijos
         texto_alto = "🌟 **12 puntos: PROFESIONALISMO Y ÉTICA INTACHABLE** \n\nEntiendes perfectamente qué es el acoso sexual, respetas el consentimiento y promueves un ambiente de trabajo seguro. Eres un policía íntegro y un ejemplo para la institución."
         texto_medio = "⚠️ **9 a 11 puntos: ALERTA DE COMPORTAMIENTOS NORMALIZADOS** \n\nCuidado. Estás justificando o normalizando acciones que constituyen acoso laboral o sexual (como los chistes, rumores o la insistencia). Necesitas revisar tus límites urgentes antes de cometer una falta disciplinaria grave."
         texto_bajo = "🚨 **8 puntos o menos: RIESGO ALTO DE COMETER ACOSO / DELITO** \n\n**Atención:** Tus respuestas reflejan comportamientos de hostigamiento, abuso de autoridad y falta de respeto graves. Estas acciones son causales de despido en la institución e incurren en delitos penales. Se recomienda buscar reeducación inmediata y cambiar estas actitudes."
 
-        # --- LÓGICA DE VISUALIZACIÓN ---
+        # 4. RESALTADO VISUAL FUERTE DE RESULTADOS
         if puntos == 12:
             st.balloons()
-            st.success(f"➡️ **¡TÚ ESTÁS AQUÍ!** \n\n {texto_alto}")
+            st.success(f"🎯 **¡TÚ ESTÁS AQUÍ! ¡EXCELENTE TRABAJO!** 🎯\n\n {texto_alto}")
             st.write("---")
-            st.markdown(texto_medio)
-            st.markdown(texto_bajo)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_medio}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_bajo}</div>", unsafe_allow_html=True)
             
         elif puntos >= 9:
             st.snow()
-            st.markdown(texto_alto)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}</div>", unsafe_allow_html=True)
             st.write("---")
-            st.warning(f"➡️ **¡TÚ ESTÁS AQUÍ!** \n\n {texto_medio}")
+            st.warning(f"🎯 **¡TÚ ESTÁS AQUÍ! PRESTA ATENCIÓN** 🎯\n\n {texto_medio}")
             st.write("---")
-            st.markdown(texto_bajo)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_bajo}</div>", unsafe_allow_html=True)
             
         else:
             st.toast('🚨 ¡ALERTA DE RIESGO!', icon='🚨')
             time.sleep(0.5)
             st.toast('🛑 Revisa tus comportamientos urgentes', icon='🛑')
             
-            st.markdown(texto_alto)
-            st.markdown(texto_medio)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div style='opacity: 0.5;'>{texto_medio}</div>", unsafe_allow_html=True)
             st.write("---")
+            st.error(f"🎯 **¡TÚ ESTÁS AQUÍ! ALERTA ROJA** 🎯\n\n {texto_bajo}")
+        
+        st.write("---")
+        st.info("**Denuncia:** El acoso sexual no es una broma, es un delito. Si eres víctima o testigo, repórtalo a los canales oficiales de Inspectoría General o la DIDADPOL (Línea 104).")
+        
+        # --- BOTÓN PARA REINICIAR ---
+        if st.button("🔄 Volver a hacer el test"):
+            for key in st.session_state.keys():
+                del st.session_state[key]
+            st.rerun()
