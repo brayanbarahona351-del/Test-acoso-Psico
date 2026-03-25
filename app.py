@@ -207,4 +207,3 @@ if st.button("Evaluar mis respuestas", type="primary"):
             st.markdown(texto_alto)
             st.markdown(texto_medio)
             st.write("---")
-            st.error(f"➡️ **¡
