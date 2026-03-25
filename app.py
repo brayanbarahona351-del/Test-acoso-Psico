@@ -193,4 +193,59 @@ if st.button("Evaluar mis respuestas", type="primary"):
     html_grafica = f"""
     <div style="width: 100%; background-color: #ddd; border-radius: 5px; position: relative; height: 35px; margin-top: 10px;">
         <div style="width: 66.6%; background-color: #ff4b4b; height: 100%; border-radius: 5px 0 0 5px; position: absolute; left: 0; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">RIESGO</div>
-        <div style="width: 25%; background-color: #ffaa00; height: 100%; position: absolute; left:
+        <div style="width: 25%; background-color: #ffaa00; height: 100%; position: absolute; left: 66.6%; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">ADVERTENCIA</div>
+        <div style="width: 8.4%; background-color: #28a745; height: 100%; border-radius: 0 5px 5px 0; position: absolute; left: 91.6%; top: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">ÓPTIMO</div>
+        <div style="position: absolute; left: calc({posicion}% - 10px); top: -20px; font-size: 20px;">⬇️</div>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 12px; color: #555; padding-top: 2px;">
+        <span>0 pts</span><span>8 pts</span><span>11 pts</span><span>12 pts</span>
+    </div>
+    """
+    
+    st.markdown(html_grafica, unsafe_allow_html=True)
+    st.write("---")
+    
+    st.markdown("### 📊 Tu Diagnóstico y Consejos")
+    
+    texto_alto = "🌟 **12 puntos: PROFESIONALISMO Y ÉTICA INTACHABLE** \n\nEntiendes perfectamente qué es el acoso sexual, respetas el consentimiento y promueves un ambiente de trabajo seguro."
+    consejo_alto = "**💡 Consejo Institucional:** ¡Sigue así! Sé un agente de cambio. Si ves a un compañero haciendo un comentario fuera de lugar o acosando a alguien, corrígelo. Tu liderazgo y ejemplo ayudan a crear una Policía Nacional más profesional y segura para todos."
+
+    texto_medio = "⚠️ **9 a 11 puntos: ALERTA DE COMPORTAMIENTOS NORMALIZADOS** \n\nCuidado. Estás justificando acciones que constituyen acoso. Necesitas revisar tus límites."
+    consejo_medio = "**💡 Consejo Institucional:** Reflexiona sobre las 'bromas' o costumbres de tu unidad. Que algo sea considerado 'normal' no significa que sea correcto o legal. Empieza a marcar límites claros entre la camaradería y la falta de respeto. Ante la duda, mantén siempre una postura estrictamente profesional."
+
+    texto_bajo = "🚨 **8 puntos o menos: RIESGO ALTO DE COMETER ACOSO / DELITO** \n\nAtención: Tus respuestas reflejan comportamientos de hostigamiento. Se recomienda buscar reeducación inmediata."
+    consejo_bajo = "**💡 CONSEJO URGENTE:** Detén cualquier comportamiento de insinuación, presión o 'bromas' pesadas hacia tus colegas. El uniforme y el rango no te dan derecho a favores personales ni sexuales. Revisa el Reglamento Disciplinario; cambiar tu actitud hoy te evitará la baja deshonrosa o un proceso penal."
+
+    # --- 🎬 DIBUJOS ANIMADOS (GIFs) Y CONSEJOS SEGÚN RESULTADO ---
+    col_gif1, col_gif2, col_gif3 = st.columns([1, 1, 1])
+    
+    if puntos == 12:
+        st.balloons()
+        with col_gif2:
+            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f3c6/512.gif", width=120) # Trofeo animado
+        st.success(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_alto}")
+        st.info(consejo_alto)
+        st.markdown(f"<div style='opacity: 0.5;'>{texto_medio}<br><br>{texto_bajo}</div>", unsafe_allow_html=True)
+        
+    elif puntos >= 9:
+        st.snow()
+        with col_gif2:
+            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/26a0_fe0f/512.gif", width=120) # Advertencia animada
+        st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}</div>", unsafe_allow_html=True)
+        st.warning(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_medio}")
+        st.warning(consejo_medio)
+        st.markdown(f"<div style='opacity: 0.5;'>{texto_bajo}</div>", unsafe_allow_html=True)
+        
+    else:
+        st.toast('🚨 ¡ALERTA DE RIESGO!', icon='🚨')
+        with col_gif2:
+            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f6a8/512.gif", width=120) # Sirena de policía animada
+        st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}<br><br>{texto_medio}</div>", unsafe_allow_html=True)
+        st.error(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_bajo}")
+        st.error(consejo_bajo)
+    
+    st.write("---")
+    st.info("**Denuncia:** El acoso sexual es un delito. Repórtalo a Inspectoría General o DIDADPOL (Línea 104).")
+    
+    if st.button("🔄 Volver a hacer el test"):
+        st.rerun()
