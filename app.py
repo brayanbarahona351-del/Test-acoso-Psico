@@ -185,7 +185,7 @@ if st.button("Evaluar mis respuestas", type="primary"):
     with col2:
         st.metric(label="Tu Puntuación Obtenida", value=f"{puntos} / 12", delta=f"{porcentaje}% de compatibilidad ética")
     
-    # --- 📈 GRÁFICA CORREGIDA Y SEGURA (CON COMILLAS TRIPLES) ---
+    # --- 📈 GRÁFICA CORREGIDA Y SEGURA ---
     st.markdown("### 📊 Ubicación en la Escala Ética")
     
     posicion = (puntos / 12) * 100
@@ -211,17 +211,28 @@ if st.button("Evaluar mis respuestas", type="primary"):
     texto_medio = "⚠️ **9 a 11 puntos: ALERTA DE COMPORTAMIENTOS NORMALIZADOS** \n\nCuidado. Estás justificando acciones que constituyen acoso. Necesitas revisar tus límites."
     texto_bajo = "🚨 **8 puntos o menos: RIESGO ALTO DE COMETER ACOSO / DELITO** \n\nAtención: Tus respuestas reflejan comportamientos de hostigamiento. Se recomienda buscar reeducación inmediata."
 
+    # --- 🎬 DIBUJOS ANIMADOS (GIFs) SEGÚN RESULTADO ---
+    col_gif1, col_gif2, col_gif3 = st.columns([1, 1, 1]) # Columnas para centrar la imagen animada
+    
     if puntos == 12:
         st.balloons()
+        with col_gif2:
+            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f3c6/512.gif", width=120) # Trofeo animado
         st.success(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_alto}")
         st.markdown(f"<div style='opacity: 0.5;'>{texto_medio}<br><br>{texto_bajo}</div>", unsafe_allow_html=True)
+        
     elif puntos >= 9:
         st.snow()
+        with col_gif2:
+            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/26a0_fe0f/512.gif", width=120) # Advertencia animada
         st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}</div>", unsafe_allow_html=True)
         st.warning(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_medio}")
         st.markdown(f"<div style='opacity: 0.5;'>{texto_bajo}</div>", unsafe_allow_html=True)
+        
     else:
         st.toast('🚨 ¡ALERTA DE RIESGO!', icon='🚨')
+        with col_gif2:
+            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f6a8/512.gif", width=120) # Sirena de policía animada
         st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}<br><br>{texto_medio}</div>", unsafe_allow_html=True)
         st.error(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_bajo}")
     
