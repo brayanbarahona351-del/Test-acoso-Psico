@@ -20,7 +20,7 @@ with st.sidebar:
     st.write("---")
     st.error("Recuerda: El acoso sexual y laboral son faltas disciplinarias graves y delitos penales.")
 
-# --- 📝 DICCIONARIO DE PREGUNTAS (12) ---
+# --- 📝 DICCIONARIO DE PREGUNTAS CON CONSEJOS (12) ---
 preguntas = [
     {
         "area": "🛡️ ÁREA 1: Límites Físicos y Ciberacoso",
@@ -30,7 +30,8 @@ preguntas = [
             "Respeto su espacio de inmediato y paso a saludarla solo de palabra o con la mano.", 
             "Me ofendo y le digo a los demás compañeros que es una maleducada."
         ],
-        "correcta": 1
+        "correcta": 1,
+        "consejo": "El contacto físico no solicitado nunca debe ser forzado. El respeto al espacio personal es fundamental en la disciplina policial."
     },
     {
         "area": None,
@@ -40,7 +41,8 @@ preguntas = [
             "Le escribo a una compañera preguntándole qué está haciendo en la cama o insinuaciones de doble sentido.", 
             "Mando un sticker o video pornográfico al chat privado de una agente 'solo por bromear'."
         ],
-        "correcta": 0
+        "correcta": 0,
+        "consejo": "Evita cualquier comentario o contenido de índole sexual en el entorno laboral o con colegas. Esto constituye ciberacoso y hostigamiento."
     },
     {
         "area": None,
@@ -50,7 +52,8 @@ preguntas = [
             "Le mando fotos mías sin camisa para ver 'si hay química'.", 
             "Respeto que es un grupo de trabajo y uso su número estrictamente para temas operativos."
         ],
-        "correcta": 2
+        "correcta": 2,
+        "consejo": "Usar información obtenida en el trabajo (como un número de teléfono en un grupo oficial) para fines personales o de coqueteo es un abuso de confianza."
     },
     {
         "area": "⚖️ ÁREA 2: Abuso de Poder (Hostigamiento Quid Pro Quo)",
@@ -60,7 +63,8 @@ preguntas = [
             "Mantengo estricta distancia profesional; mi rango no es una herramienta para conseguir citas.", 
             "Le pongo los turnos más pesados o le llamo la atención sin razón hasta que me haga caso."
         ],
-        "correcta": 1
+        "correcta": 1,
+        "consejo": "Usar tu rango para obtener favores o castigar por rechazos es una falta grave, abuso de autoridad y acoso directo."
     },
     {
         "area": None,
@@ -70,7 +74,8 @@ preguntas = [
             "Le digo que si no sale conmigo, le reportaré al superior que faltó ese día.", 
             "Le digo que no se preocupe, el apoyo entre compañeros es fundamental y no pido nada a cambio."
         ],
-        "correcta": 2
+        "correcta": 2,
+        "consejo": "La solidaridad entre compañeros es un deber institucional, no una moneda de cambio para cobrar favores de índole sexual."
     },
     {
         "area": None,
@@ -80,7 +85,8 @@ preguntas = [
             "Le ofrezco darle prioridad a su caso si acepta tomarse un café conmigo.", 
             "Realizo el procedimiento policial con total respeto y protejo la privacidad de sus datos."
         ],
-        "correcta": 2
+        "correcta": 2,
+        "consejo": "Aprovecharse de la vulnerabilidad de una ciudadana y usar sus datos privados para coquetear destruye la confianza pública y es penado por la ley."
     },
     {
         "area": "🗣️ ÁREA 3: Ambiente Laboral Hostil y Complicidad",
@@ -90,7 +96,8 @@ preguntas = [
             "Me burlo de ella frente a los demás por 'no aguantar casaca'.", 
             "Le digo que si está en la Policía tiene que aprender a aguantar el ambiente pesado."
         ],
-        "correcta": 0
+        "correcta": 0,
+        "consejo": "Si alguien te indica que tu comentario la incomodó, asume la responsabilidad y cambia la actitud. No minimices su sentir ni justifiques la falta de respeto."
     },
     {
         "area": None,
@@ -100,7 +107,8 @@ preguntas = [
             "Les exijo que borren eso; les recuerdo que difundir material íntimo es un delito y una falta grave.", 
             "Las veo un rato, pero me quedo callado para no tener problemas con el grupo."
         ],
-        "correcta": 1
+        "correcta": 1,
+        "consejo": "Consumir, guardar o compartir imágenes íntimas sin el consentimiento de la persona te hace cómplice de un delito de cibercrimen."
     },
     {
         "area": None,
@@ -110,7 +118,8 @@ preguntas = [
             "Me quedo escuchando con atención para saberme bien la historia y averiguar si es cierto.", 
             "Se lo voy a contar de inmediato a mi compañero de patrulla para que también sepa."
         ],
-        "correcta": 0
+        "correcta": 0,
+        "consejo": "La difamación sexualizada crea un ambiente laboral tóxico. Frenar los rumores y respetar los méritos de tus colegas es parte de tu integridad."
     },
     {
         "area": "🛑 ÁREA 4: Cultura del Consentimiento y el Rechazo",
@@ -120,7 +129,8 @@ preguntas = [
             "Acepto su respuesta con madurez a la primera y no vuelvo a tocar el tema.", 
             "Me enojo, dejo de hablarle y le aplico la 'ley del hielo' durante los turnos."
         ],
-        "correcta": 1
+        "correcta": 1,
+        "consejo": "Un 'No' significa no. La insistencia reiterada o las represalias emocionales tras un rechazo son actos claros de hostigamiento."
     },
     {
         "area": None,
@@ -130,7 +140,8 @@ preguntas = [
             "Hago mi trabajo a medias o con desgano para que vea 'lo que se pierde'.", 
             "Aprovecho el estrés del operativo para tirarle indirectas o burlarme de su rechazo."
         ],
-        "correcta": 0
+        "correcta": 0,
+        "consejo": "Poner en riesgo la seguridad de un compañero por un rechazo personal es una negligencia gravísima y una falta total a la lealtad policial."
     },
     {
         "area": None,
@@ -140,7 +151,8 @@ preguntas = [
             "Me uno a los comentarios para quedar bien con el superior jerárquico.", 
             "Animo a la compañera a denunciar la situación y me ofrezco como testigo del hostigamiento."
         ],
-        "correcta": 2
+        "correcta": 2,
+        "consejo": "El silencio perpetúa el acoso. Apoyar a la víctima y estar dispuesto a testificar es tu deber ético, sin importar el rango del agresor."
     }
 ]
 
@@ -160,9 +172,19 @@ st.write("---")
 # --- 📊 EVALUACIÓN ---
 if st.button("Evaluar mis respuestas", type="primary"):
     puntos = 0
+    errores = [] # Lista para guardar las preguntas en las que falló el usuario
+    
     for i, res in enumerate(respuestas):
-        if res == preguntas[i]['opts'][preguntas[i]['correcta']]:
+        idx_correcta = preguntas[i]['correcta']
+        if res == preguntas[i]['opts'][idx_correcta]:
             puntos += 1
+        else:
+            errores.append({
+                "pregunta": preguntas[i]['p'],
+                "tu_respuesta": res,
+                "correcta": preguntas[i]['opts'][idx_correcta],
+                "consejo": preguntas[i]['consejo']
+            })
             
     st.divider()
     
@@ -185,9 +207,8 @@ if st.button("Evaluar mis respuestas", type="primary"):
     with col2:
         st.metric(label="Tu Puntuación Obtenida", value=f"{puntos} / 12", delta=f"{porcentaje}% de compatibilidad ética")
     
-    # --- 📈 GRÁFICA CORREGIDA Y SEGURA (CON COMILLAS TRIPLES) ---
+    # --- 📈 GRÁFICA ---
     st.markdown("### 📊 Ubicación en la Escala Ética")
-    
     posicion = (puntos / 12) * 100
     
     html_grafica = f"""
@@ -205,24 +226,24 @@ if st.button("Evaluar mis respuestas", type="primary"):
     st.markdown(html_grafica, unsafe_allow_html=True)
     st.write("---")
     
-    st.markdown("### 📊 Tu Diagnóstico y Consejos")
+    # --- DIAGNÓSTICO GENERAL ---
+    st.markdown("### 📊 Tu Diagnóstico")
     
     texto_alto = "🌟 **12 puntos: PROFESIONALISMO Y ÉTICA INTACHABLE** \n\nEntiendes perfectamente qué es el acoso sexual, respetas el consentimiento y promueves un ambiente de trabajo seguro."
     consejo_alto = "**💡 Consejo Institucional:** ¡Sigue así! Sé un agente de cambio. Si ves a un compañero haciendo un comentario fuera de lugar o acosando a alguien, corrígelo. Tu liderazgo y ejemplo ayudan a crear una Policía Nacional más profesional y segura para todos."
 
     texto_medio = "⚠️ **9 a 11 puntos: ALERTA DE COMPORTAMIENTOS NORMALIZADOS** \n\nCuidado. Estás justificando acciones que constituyen acoso. Necesitas revisar tus límites."
-    consejo_medio = "**💡 Consejo Institucional:** Reflexiona sobre las 'bromas' o costumbres de tu unidad. Que algo sea considerado 'normal' no significa que sea correcto o legal. Empieza a marcar límites claros entre la camaradería y la falta de respeto. Ante la duda, mantén siempre una postura estrictamente profesional."
+    consejo_medio = "**💡 Consejo Institucional:** Reflexiona sobre las 'bromas' o costumbres de tu unidad. Que algo sea considerado 'normal' no significa que sea correcto o legal. Empieza a marcar límites claros entre la camaradería y la falta de respeto."
 
     texto_bajo = "🚨 **8 puntos o menos: RIESGO ALTO DE COMETER ACOSO / DELITO** \n\nAtención: Tus respuestas reflejan comportamientos de hostigamiento. Se recomienda buscar reeducación inmediata."
-    consejo_bajo = "**💡 CONSEJO URGENTE:** Detén cualquier comportamiento de insinuación, presión o 'bromas' pesadas hacia tus colegas. El uniforme y el rango no te dan derecho a favores personales ni sexuales. Revisa el Reglamento Disciplinario; cambiar tu actitud hoy te evitará la baja deshonrosa o un proceso penal."
+    consejo_bajo = "**💡 CONSEJO URGENTE:** Detén cualquier comportamiento de insinuación, presión o 'bromas' pesadas hacia tus colegas. El uniforme y el rango no te dan derecho a favores personales ni sexuales."
 
-    # --- 🎬 DIBUJOS ANIMADOS (GIFs) Y CONSEJOS SEGÚN RESULTADO ---
     col_gif1, col_gif2, col_gif3 = st.columns([1, 1, 1])
     
     if puntos == 12:
         st.balloons()
         with col_gif2:
-            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f3c6/512.gif", width=120) # Trofeo animado
+            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f3c6/512.gif", width=120)
         st.success(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_alto}")
         st.info(consejo_alto)
         st.markdown(f"<div style='opacity: 0.5;'>{texto_medio}<br><br>{texto_bajo}</div>", unsafe_allow_html=True)
@@ -230,7 +251,7 @@ if st.button("Evaluar mis respuestas", type="primary"):
     elif puntos >= 9:
         st.snow()
         with col_gif2:
-            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/26a0_fe0f/512.gif", width=120) # Advertencia animada
+            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/26a0_fe0f/512.gif", width=120)
         st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}</div>", unsafe_allow_html=True)
         st.warning(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_medio}")
         st.warning(consejo_medio)
@@ -239,13 +260,25 @@ if st.button("Evaluar mis respuestas", type="primary"):
     else:
         st.toast('🚨 ¡ALERTA DE RIESGO!', icon='🚨')
         with col_gif2:
-            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f6a8/512.gif", width=120) # Sirena de policía animada
+            st.image("https://fonts.gstatic.com/s/e/notoemoji/latest/1f6a8/512.gif", width=120)
         st.markdown(f"<div style='opacity: 0.5;'>{texto_alto}<br><br>{texto_medio}</div>", unsafe_allow_html=True)
         st.error(f"🎯 **¡TÚ ESTÁS AQUÍ!** 🎯\n\n {texto_bajo}")
         st.error(consejo_bajo)
     
+    # --- 🔍 REVISIÓN DE ERRORES (NUEVO) ---
+    if len(errores) > 0:
+        st.write("---")
+        st.markdown("### 🔍 Revisión de tus respuestas")
+        st.write("Revisa en qué fallaste y lee los consejos para mejorar:")
+        
+        for index, error in enumerate(errores):
+            st.error(f"**Pregunta:** {error['pregunta']}")
+            st.write(f"❌ **Elegiste:** {error['tu_respuesta']}")
+            st.success(f"✅ **Lo correcto era:** {error['correcta']}")
+            st.info(f"💡 **Consejo:** {error['consejo']}")
+            st.write("") # Espacio entre errores
+            
     st.write("---")
-    st.info("**Denuncia:** El acoso sexual es un delito. Repórtalo a Inspectoría General o DIDADPOL (Línea 104).")
     
     if st.button("🔄 Volver a hacer el test"):
         st.rerun()
